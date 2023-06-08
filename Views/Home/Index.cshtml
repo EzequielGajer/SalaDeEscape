@@ -1,8 +1,44 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+<script defer src="https://app.embed.im/snow.js"></script>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<link rel="stylesheet" type="text/css" href="styles.css">
+
+<div class="animation-container">
+  <h1 class="tutorial-animation">Tutorial</h1>
+</div>
+
+<style>
+    body {
+        background-color: black;
+        color: white;
+    }
+
+    .animation-container {
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .tutorial-animation {
+        font-family: 'Roboto', sans-serif;
+        font-size: 48px; 
+        color: #fff; 
+        animation-name: tutorialAnimation;
+        animation-duration: 2s; 
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out; 
+    }
+
+
+</style>
+
+
+
