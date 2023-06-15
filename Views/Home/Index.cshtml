@@ -1,17 +1,19 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Index";
 }
+
 <script defer src="https://app.embed.im/snow.js"></script>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="Home">
+    <h1>Galactic Escape Room</h1>
+    <h2>¡Desafía los límites del universo y encuentra tu camino de regreso a la Tierra!</h2>
 </div>
 
-<link rel="stylesheet" type="text/css" href="styles.css">
+<div class="Contenedor">
+    <img src="https://i.insider.com/5fb331657b258c1d5241ab28?width=1200&format=jpeg" alt="">
+    <img src="https://i.pinimg.com/originals/00/63/61/0063614ab36b7bda28816875facb63bf.jpg" alt="">
+    <img src="https://todaysparent.mblycdn.com/tp/resized/2018/01/1200x600/space_1280x960.jpg" alt="">
 
-<div class="animation-container">
-  <h1 class="tutorial-animation">Tutorial</h1>
 </div>
 
 <style>
@@ -29,15 +31,49 @@
 
     .tutorial-animation {
         font-family: 'Roboto', sans-serif;
-        font-size: 48px; 
-        color: #fff; 
+        font-size: 48px;
+        color: #fff;
         animation-name: tutorialAnimation;
-        animation-duration: 2s; 
+        animation-duration: 2s;
         animation-iteration-count: infinite;
-        animation-timing-function: ease-in-out; 
+        animation-timing-function: ease-in-out;
     }
 
+    .Home h1{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-align: center;
+        font-size: 60px;
+        word-spacing: 8px;
+        animation: moveUpDown 2s ease-in-out infinite alternate;
+    }
 
+    .Home h2 {
+        text-align: center;
+        margin-top: 20px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        margin-bottom: 100px;
+    }
+
+    img{
+        
+        margin: 30px;
+        width: 550px;
+        height: 300px;
+        transition: 0.7s;
+    }
+
+    img:hover {
+        transform: scale(1.1);
+    }
+
+    .Contenedor{
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        margin-left: 100px;
+        margin-right: 100px;
+        margin-top: 30px;
+    }
 </style>
 
 
