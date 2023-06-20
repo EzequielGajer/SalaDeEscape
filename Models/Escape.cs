@@ -3,10 +3,16 @@ public static class Escape{
     private static string[] incognitasSalas = new string[] {"Incognita Sala 1","Incognita Sala 2","Incognita Sala 3","Incognita Sala 4"};
    
     private static int estadoJuego = 1;
-   
+
+    private static int vidasRestantes = 4;
+
+    private static int vidasIniciales = 4;
+
+
     private static void InicializarJuego()
     {
         incognitasSalas = new string[] {"Incognita Sala 1", "Incognita Sala 2" ,"Incognita Sala 3","Incognita Sala 4"};
+        vidasRestantes = vidasIniciales;
         
     }
    
@@ -14,10 +20,15 @@ public static class Escape{
     {
         return estadoJuego;
     }
+
+    public static int GetVidasRestantes()
+    {
+        return vidasRestantes;
+    }
    
      public static bool ResolverSala(int Sala, string Incognita)
     {
-        if (Sala > estadoJuego)
+        if (Sala > estadoJuego || vidasRestantes <= 0)
         {
             return false;
         }
@@ -60,6 +71,14 @@ public static class Escape{
                     return true;
                 }
                break;
+        }
+
+        vidasRestantes = vidasRestantes - 1;
+
+        if (vidasRestantes <= 0)
+        {   
+            Console.WriteLine("Se te agotaron las vidas");
+            return false;
         }
        
         return false;

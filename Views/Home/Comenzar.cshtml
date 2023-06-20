@@ -1,0 +1,20 @@
+@{
+    ViewBag.Title = "Comenzar";
+}
+
+<p>Bienvenido al juego de escape. ¡Prepárate para resolver desafiantes acertijos y escapar!</p>
+
+<p>Presiona el botón de "Comenzar Juego" para avanzar a la primera habitación.</p>
+
+<a href='@Url.Action("Habitacion1", "Home")'>Comenzar Juego</a>
+
+<p>Vidas Restantes: @ViewBag.VidasRestantes</p>
+
+
+<script defer src="https://app.embed.im/snow.js"></script>
+
+<style>
+    body {
+        background-color: black;
+    }
+</style>

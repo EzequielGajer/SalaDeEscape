@@ -1,0 +1,31 @@
+@{
+    ViewBag.Title = "Habitacion 2";
+}
+
+<script defer src="https://app.embed.im/snow.js"></script>
+
+<p>Vidas Restantes: @ViewBag.VidasRestantes</p>
+
+<p>Estas en la habitación 2, felicidades</p>
+
+<h1>Habitación 2</h1>
+<p>Ingrese el código:</p>
+
+<form method="post" asp-action="Habitacion2">
+    <input type="hidden" name="sala" value="2" />
+    <input type="text" name="clave" />
+    <button type="submit">Validar</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <p class="error">@ViewBag.Error</p>
+}
+
+<a href="@Url.Action("Habitacion3", "Home")"></a>
+
+<style>
+    body {
+        background-color: black;
+    }
+</style>
