@@ -2,12 +2,72 @@
     ViewBag.Title = "Index";
 }
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+
+
+
 <script defer src="https://app.embed.im/snow.js"></script>
+
 
 <div class="Home">
     <h1>Galactic Escape Room</h1>
     <h2>¡Desafía los límites del universo y encuentra tu camino de regreso a la Tierra!</h2>
 </div>
+
+
+<div class="astronauta">
+<div class="box-of-star1">
+<div class="star star-position1"></div>
+<div class="star star-position2"></div>
+<div class="star star-position3"></div>
+<div class="star star-position4"></div>
+<div class="star star-position5"></div>
+<div class="star star-position6"></div>
+<div class="star star-position7"></div>
+</div>
+<div class="box-of-star2">
+    <div class="star star-position1"></div>
+    <div class="star star-position2"></div>
+    <div class="star star-position3"></div>
+    <div class="star star-position4"></div>
+    <div class="star star-position5"></div>
+    <div class="star star-position6"></div>
+    <div class="star star-position7"></div>
+</div>
+<div class="box-of-star3">
+    <div class="star star-position1"></div>
+    <div class="star star-position2"></div>
+    <div class="star star-position3"></div>
+    <div class="star star-position4"></div>
+    <div class="star star-position5"></div>
+    <div class="star star-position6"></div>
+    <div class="star star-position7"></div>
+</div>
+<div class="box-of-star4">
+    <div class="star star-position1"></div>
+    <div class="star star-position2"></div>
+    <div class="star star-position3"></div>
+    <div class="star star-position4"></div>
+    <div class="star star-position5"></div>
+    <div class="star star-position6"></div>
+    <div class="star star-position7"></div>
+</div>
+<div data-js="astro" class="astronaut">
+    <div class="head"></div>
+    <div class="arm arm-left"></div>
+    <div class="arm arm-right"></div>
+    <div class="body">
+        <div class="panel"></div>
+    </div>
+    <div class="leg leg-left"></div>
+    <div class="leg leg-right"></div>
+    <div class="schoolbag"></div>
+</div>
+</div>
+
+<h2 class="title-imgs">Imagenes descriptivas del juego</h2>
+
 
 <div class="Contenedor">
     <img src="https://i.insider.com/5fb331657b258c1d5241ab28?width=1200&format=jpeg" alt="">
@@ -16,7 +76,22 @@
 
 </div>
 
+<button class="btn" type="button">
+    <strong>TUTORIAL</strong>
+    <div id="container-stars">
+        <div id="stars"></div>
+    </div>
+
+    <div id="glow">
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+</button>
+
+
 <style>
+
+
     body {
         background-color: black;
         color: white;
@@ -39,7 +114,7 @@
         animation-timing-function: ease-in-out;
     }
 
-    .Home h1{
+    .Home h1 {
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         text-align: center;
         font-size: 60px;
@@ -54,19 +129,28 @@
         margin-bottom: 100px;
     }
 
-    img{
-        
+    img {
+
         margin: 30px;
         width: 550px;
         height: 300px;
         transition: 0.7s;
     }
 
+
     img:hover {
         transform: scale(1.1);
     }
 
-    .Contenedor{
+    .title-imgs {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-align: center;
+        font-size: 40px;
+        word-spacing: 8px;
+        margin-bottom: 30px;
+    }
+
+    .Contenedor {
         display: flex;
         justify-content: center;
         text-align: center;

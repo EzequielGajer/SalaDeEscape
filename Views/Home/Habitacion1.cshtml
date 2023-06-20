@@ -5,11 +5,13 @@
 <script defer src="https://app.embed.im/snow.js"></script>
 
 <h1>Habitación 1</h1>
-<p>Tiempo restante: <span id="contador">1:00:00</span></p>
+<p>Tiempo restante: <span id="contador">00:15:00</span></p>
 
 <img src="https://image.cnbcfm.com/api/v1/image/106636040-1595951417438-Virgin_Galactic_Spaceship_Cabin_Interior_In_Space.jpg?v=1595951489&w=740&h=416&ffmt=webp&vtcrop=y" alt="">
 
 <p>Pista inicial: "Mira a través de las ventanillas y podrás ver el infinito vaco; sin embargo, nuestro destino está allá afuera. Observa bien y encontrarás la respuesta hacia el siguiente lugar."</p>
+
+<p>Ingrese el código:</p>
 
 <form method="post" asp-action="Habitacion1">
     <input type="hidden" name="sala" value="1" />
@@ -17,7 +19,7 @@
     <button type="submit">Validar</button>
 </form>
 
-@if (!string.IsNullOrEmpty(ViewBag.Error))
+@if (ViewBag.Error != null)
 {
     <p class="error">@ViewBag.Error</p>
 }
@@ -27,37 +29,41 @@
 <p>Vidas Restantes: @ViewBag.VidasRestantes</p>
 
 <script>
-    var tiempoRestante = 3600; // Duración total del contador en segundos (1 hora)
-    var intervalo;
+    
+  var tiempoTotal = 900; 
+  var tiempoRestante = tiempoTotal; 
+  var intervalo;
 
-    function iniciarContador() {
-        intervalo = setInterval(actualizarContador, 1000);
+  function iniciarContador() {
+    intervalo = setInterval(actualizarContador, 1000);
+  }
+
+  function actualizarContador() {
+    tiempoRestante--;
+    var minutos = Math.floor(tiempoRestante / 60);
+    var segundos = tiempoRestante % 60;
+
+    var minutosFormateados = minutos.toString().padStart(2, "0");
+    var segundosFormateados = segundos.toString().padStart(2, "0");
+
+    document.getElementById("contador").textContent =
+      "00:" + minutosFormateados + ":" + segundosFormateados;
+
+    if (tiempoRestante <= 0) {
+      clearInterval(intervalo);
+      window.location.href = '@Url.Action("Derrota","Home")';
     }
+  }
 
-    function actualizarContador() {
-        tiempoRestante--;
-        var horas = Math.floor(tiempoRestante / 3600);
-        var minutos = Math.floor((tiempoRestante % 3600) / 60);
-        var segundos = tiempoRestante % 60;
+  window.onload = function () {
+    iniciarContador();
+  };
 
-        // Formatear los valores para que tengan dos dígitos (por ejemplo, 05:09:12)
-        var horasFormateadas = horas.toString().padStart(2, "0");
-        var minutosFormateados = minutos.toString().padStart(2, "0");
-        var segundosFormateados = segundos.toString().padStart(2, "0");
-
-        // Actualizar el elemento HTML que muestra el contador
-        document.getElementById("contador").textContent = horasFormateadas + ":" + minutosFormateados + ":" + segundosFormateados;
-
-        if (tiempoRestante <= 0) {
-            clearInterval(intervalo);
-            // El tiempo se ha agotado, realizar alguna acción aquí (por ejemplo, redirigir a una página de derrota)
-            // window.location.href = "/Derrota";
-        }
-    }
-
-    window.onload = function() {
-        iniciarContador();
-    };
+  function actualizarTiempoRestante(tiempoPasado) {
+    tiempoRestante -= tiempoPasado;
+    clearInterval(intervalo);
+    intervalo = setInterval(actualizarContador, 1000);
+  }
 
     document.getElementById("btnPistaExtra").addEventListener("click", function() {
         var mensajePistaExtra = "Pista extra: Los astronautas necesitan un traje especial para sobrevivir en el __." ;

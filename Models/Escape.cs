@@ -1,21 +1,18 @@
-public static class Escape{
-   
-    private static string[] incognitasSalas = new string[] {"Incognita Sala 1","Incognita Sala 2","Incognita Sala 3","Incognita Sala 4"};
-   
+public static class Escape
+{
+
+    private static string[] incognitasSalas = new string[] { "ESPACIO", "LUNA", "AZUL", "Incognita Sala 4" };
+
     private static int estadoJuego = 1;
 
-    private static int vidasRestantes = 4;
-
-    private static int vidasIniciales = 4;
-
+    private static int vidasRestantes = 5;
 
     private static void InicializarJuego()
     {
-        incognitasSalas = new string[] {"Incognita Sala 1", "Incognita Sala 2" ,"Incognita Sala 3","Incognita Sala 4"};
-        vidasRestantes = vidasIniciales;
-        
+        incognitasSalas = new string[] { "ESPACIO", "LUNA", "AZUL", "Incognita Sala 4" };
+
     }
-   
+
     public static int GetEstadoJuego()
     {
         return estadoJuego;
@@ -25,8 +22,18 @@ public static class Escape{
     {
         return vidasRestantes;
     }
-   
-     public static bool ResolverSala(int Sala, string Incognita)
+
+    public static void DecrementarVida()
+    {
+        vidasRestantes--;
+    }
+
+    public static void ResetearVidas()
+    {
+        vidasRestantes = 4;
+    }
+
+    public static bool ResolverSala(int Sala, string Incognita)
     {
         if (Sala > estadoJuego || vidasRestantes <= 0)
         {
@@ -41,7 +48,7 @@ public static class Escape{
         switch (Sala)
         {
             case 1:
-                if (Incognita == "Incognita Sala 1")
+                if (Incognita == "ESPACIO")
                 {
                     estadoJuego = estadoJuego + 1;
                     return true;
@@ -49,7 +56,7 @@ public static class Escape{
                 break;
 
             case 2:
-                if (Incognita == "Incognita Sala 2")
+                if (Incognita == "LUNA")
                 {
                     estadoJuego = estadoJuego + 1;
                     return true;
@@ -57,7 +64,7 @@ public static class Escape{
                 break;
 
             case 3:
-                if (Incognita ==  "Incognita Sala 3")
+                if (Incognita == "AZUL")
                 {
                     estadoJuego = estadoJuego + 1;
                     return true;
@@ -65,22 +72,22 @@ public static class Escape{
                 break;
 
             case 4:
-                if (Incognita == "Incognita Sala 4")
+                if (Incognita == "EITAN")
                 {
                     estadoJuego = estadoJuego + 1;
                     return true;
                 }
-               break;
+                break;
         }
 
         vidasRestantes = vidasRestantes - 1;
 
         if (vidasRestantes <= 0)
-        {   
+        {
             Console.WriteLine("Se te agotaron las vidas");
             return false;
         }
-       
+
         return false;
     }
 }

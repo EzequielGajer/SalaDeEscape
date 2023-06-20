@@ -2,6 +2,9 @@
     ViewBag.Title = "Tutorial";
 }
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+
 <script defer src="https://app.embed.im/snow.js"></script>
 
 <h1>Historia</h1>
@@ -44,6 +47,18 @@
         </li>
     </ul>
 </div>
+
+<button class="btn" type="button">
+  <strong>PERSONAJES</strong>
+  <div id="container-stars">
+    <div id="stars"></div>
+  </div>
+
+  <div id="glow">
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+</button>
 <style>
     body {
         background-color: black;

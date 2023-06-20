@@ -4,11 +4,13 @@
 
 <script defer src="https://app.embed.im/snow.js"></script>
 
-<p>Vidas Restantes: @ViewBag.VidasRestantes</p>
-
-<p>Estas en la habitación 2, felicidades</p>
-
 <h1>Habitación 2</h1>
+<p>Tiempo restante: <span id="contador">00:15:00</span></p>
+
+<img src="https://st3.depositphotos.com/1008648/19202/i/600/depositphotos_192022418-stock-photo-spaceship-grunge-interior-with-view.jpg" alt="">
+
+<p>Pista Inicial: Observa con atención el ventanal principal en la habitación!</p>
+
 <p>Ingrese el código:</p>
 
 <form method="post" asp-action="Habitacion2">
@@ -22,7 +24,51 @@
     <p class="error">@ViewBag.Error</p>
 }
 
-<a href="@Url.Action("Habitacion3", "Home")"></a>
+<button type="button" id="btnPistaExtra2">Pista Extra</button>
+
+<p>Vidas Restantes: @ViewBag.VidasRestantes</p>
+
+<script>
+  var tiempoTotal = 900; 
+  var tiempoRestante = tiempoTotal; 
+  var intervalo;
+
+  function iniciarContador() {
+    intervalo = setInterval(actualizarContador, 1000);
+  }
+
+  function actualizarContador() {
+    tiempoRestante--;
+    var minutos = Math.floor(tiempoRestante / 60);
+    var segundos = tiempoRestante % 60;
+
+    var minutosFormateados = minutos.toString().padStart(2, "0");
+    var segundosFormateados = segundos.toString().padStart(2, "0");
+
+    document.getElementById("contador").textContent =
+      "00:" + minutosFormateados + ":" + segundosFormateados;
+
+    if (tiempoRestante <= 0) {
+      clearInterval(intervalo);
+      window.location.href = '@Url.Action("Derrota","Home")';
+    }
+  }
+
+  window.onload = function () {
+    iniciarContador();
+  };
+
+  function actualizarTiempoRestante(tiempoPasado) {
+    tiempoRestante -= tiempoPasado;
+    clearInterval(intervalo);
+    intervalo = setInterval(actualizarContador, 1000);
+  }
+
+    document.getElementById("btnPistaExtra2").addEventListener("click", function() {
+        var mensajePistaExtra = "Pista Extra: El planeta más cercano puede tener un significado especial. Examinalo y descubre cual es" ;
+        alert(mensajePistaExtra);
+    });
+</script>
 
 <style>
     body {

@@ -1,0 +1,77 @@
+@{
+    ViewBag.Title = "Habitación 4";
+}
+
+<script defer src="https://app.embed.im/snow.js"></script>
+
+<h1>Habitación 4</h1>
+<p>Tiempo restante: <span id="contador">00:15:00</span></p>
+
+<img src="https://t3.ftcdn.net/jpg/01/71/98/14/360_F_171981494_N2TgGBGJy0m3NaURXgxQ2H080eUyFnET.jpg" alt="">
+
+<p>Pista inicial: "</p>
+
+<p>Ingrese el código:</p>
+
+<form method="post" asp-action="Habitacion4">
+    <input type="hidden" name="sala" value="4" />
+    <input type="text" name="clave" />
+    <button type="submit">Validar</button>
+</form>
+
+@if (ViewBag.Error != null)
+{
+    <p class="error">@ViewBag.Error</p>
+}
+
+<button type="button" id="btnPistaExtra4">Pista Extra</button>
+
+<p>Vidas Restantes: @ViewBag.VidasRestantes</p>
+
+<script>
+    var tiempoTotal = 900; 
+    var tiempoRestante = tiempoTotal; 
+    var intervalo;
+
+    function iniciarContador() {
+    intervalo = setInterval(actualizarContador, 1000);
+    }
+
+    function actualizarContador() {
+    tiempoRestante--;
+    var minutos = Math.floor(tiempoRestante / 60);
+    var segundos = tiempoRestante % 60;
+
+    var minutosFormateados = minutos.toString().padStart(2, "0");
+    var segundosFormateados = segundos.toString().padStart(2, "0");
+
+    document.getElementById("contador").textContent =
+      "00:" + minutosFormateados + ":" + segundosFormateados;
+
+    if (tiempoRestante <= 0) {
+      clearInterval(intervalo);
+      window.location.href = '@Url.Action("Derrota","Home")';
+    }
+  }
+
+  window.onload = function () {
+    iniciarContador();
+  };
+
+  function actualizarTiempoRestante(tiempoPasado) {
+    tiempoRestante -= tiempoPasado;
+    clearInterval(intervalo);
+    intervalo = setInterval(actualizarContador, 1000);
+  }
+
+    document.getElementById("btnPistaExtra4").addEventListener("click", function() {
+        var mensajePistaExtra = "Pista extra: Los astronautas necesitan un traje especial para sobrevivir en el __." ;
+        alert(mensajePistaExtra);
+    });
+</script>
+
+<style>
+    body {
+        background-color: black;
+    }
+</style>

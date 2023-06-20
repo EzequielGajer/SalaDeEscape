@@ -35,17 +35,17 @@ public class HomeController : Controller
 
     public IActionResult Comenzar()
     {
-    int estadoJuego = Escape.GetEstadoJuego();
-    int vidasRestantes = Escape.GetVidasRestantes();
+        int estadoJuego = Escape.GetEstadoJuego();
+        int vidasRestantes = Escape.GetVidasRestantes();
 
-    ViewBag.VidasRestantes = vidasRestantes;
+        ViewBag.VidasRestantes = vidasRestantes;
 
-    return View("Comenzar");
+        return View("Comenzar");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
 
- public IActionResult Habitacion1(int sala, string clave)
+    public IActionResult Habitacion1(int sala, string clave)
     {
         int estadoJuego = Escape.GetEstadoJuego();
         int vidasRestantes = Escape.GetVidasRestantes();
@@ -53,14 +53,29 @@ public class HomeController : Controller
         if (sala != 1 || clave != "ESPACIO")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
-            vidasRestantes = vidasRestantes-1;
-            ViewBag.VidasRestantes = vidasRestantes;
+            Escape.DecrementarVida();
+            int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
+
+            if (vidasRestantesDespuesDeRestar == 0)
+            {
+                return View("Derrota");
+            }
+
+            ViewBag.VidasRestantes = vidasRestantesDespuesDeRestar;
+
             return View("Habitacion1");
+
         }
 
         Escape.ResolverSala(sala, clave);
+        int vidasRestantesDespuesDeResolver = Escape.GetVidasRestantes();
 
-        ViewBag.VidasRestantes = vidasRestantes;
+        if (vidasRestantesDespuesDeResolver == 0)
+        {
+            return View("Derrota");
+        }
+
+        ViewBag.VidasRestantes = vidasRestantesDespuesDeResolver;
 
         return View("Habitacion2");
     }
@@ -69,55 +84,97 @@ public class HomeController : Controller
     {
         int estadoJuego = Escape.GetEstadoJuego();
         int vidasRestantes = Escape.GetVidasRestantes();
-        
-        if (sala != 2 || clave != "TALL")
+
+        if (sala != 2 || clave != "LUNA")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
-            vidasRestantes = vidasRestantes-1;
-            ViewBag.VidasRestantes = vidasRestantes;
+            Escape.DecrementarVida();
+            int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
+
+            if (vidasRestantesDespuesDeRestar == 0)
+            {
+                return View("Derrota");
+            }
+
+            ViewBag.VidasRestantes = vidasRestantesDespuesDeRestar;
             return View("Habitacion2");
         }
 
         Escape.ResolverSala(sala, clave);
+        int vidasRestantesDespuesDeResolver = Escape.GetVidasRestantes();
 
-        ViewBag.VidasRestantes = vidasRestantes;
+        if (vidasRestantesDespuesDeResolver == 0)
+        {
+            return View("Derrota");
+        }
+
+        ViewBag.VidasRestantes = vidasRestantesDespuesDeResolver;
 
         return View("Habitacion3");
     }
 
     public IActionResult Habitacion3(int sala, string clave)
     {
-        if (sala != 3 || clave != "Incognita Sala 3")
+        int estadoJuego = Escape.GetEstadoJuego();
+        int vidasRestantes = Escape.GetVidasRestantes();
+
+        if (sala != 3 || clave != "AZUL")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
+            Escape.DecrementarVida();
+            int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
+
+            if (vidasRestantesDespuesDeRestar == 0)
+            {
+                return View("Derrota");
+            }
+
+            ViewBag.VidasRestantes = vidasRestantesDespuesDeRestar;
             return View("Habitacion3");
         }
 
         Escape.ResolverSala(sala, clave);
+        int vidasRestantesDespuesDeResolver = Escape.GetVidasRestantes();
 
-        int estadoJuego = Escape.GetEstadoJuego();
-        int vidasRestantes = Escape.GetVidasRestantes();
+        if (vidasRestantesDespuesDeResolver == 0)
+        {
+            return View("Derrota");
+        }
 
-        ViewBag.VidasRestantes = vidasRestantes;
+        ViewBag.VidasRestantes = vidasRestantesDespuesDeResolver;
 
         return View("Habitacion4");
     }
 
     public IActionResult Habitacion4(int sala, string clave)
     {
-        if (sala != 4 || clave != "Incognita Sala 4")
+        int estadoJuego = Escape.GetEstadoJuego();
+        int vidasRestantes = Escape.GetVidasRestantes();
+
+        if (sala != 4 || clave != "EITAN")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
+            Escape.DecrementarVida();
+            int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
+
+            if (vidasRestantesDespuesDeRestar == 0)
+            {
+                return View("Derrota");
+            }
+
+            ViewBag.VidasRestantes = vidasRestantesDespuesDeRestar;
             return View("Habitacion4");
         }
 
         Escape.ResolverSala(sala, clave);
+        int vidasRestantesDespuesDeResolver = Escape.GetVidasRestantes();
 
-        int estadoJuego = Escape.GetEstadoJuego();
-        int vidasRestantes = Escape.GetVidasRestantes();
+        if (vidasRestantesDespuesDeResolver == 0)
+        {
+            return View("Derrota");
+        }
 
-        ViewBag.VidasRestantes = vidasRestantes;
-
+        ViewBag.VidasRestantes = vidasRestantesDespuesDeResolver;
         return View("Victoria");
     }
 
@@ -131,5 +188,20 @@ public class HomeController : Controller
         }
 
         return View("Comenzar");
+    }
+
+    public IActionResult Derrota()
+    {
+        return View("Derrota");
+    }
+
+    public IActionResult NuevoJuego()
+    {
+        Escape.ResetearVidas();
+
+        int vidasRestantes = Escape.GetVidasRestantes();
+        ViewBag.VidasRestantes = vidasRestantes;
+
+        return View("Habitacion1");
     }
 }
