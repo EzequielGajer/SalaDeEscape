@@ -2,69 +2,102 @@
     ViewBag.Title = "Habitacion 3";
 }
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/habitacion.css" asp-append-version="true" />
+
 <script defer src="https://app.embed.im/snow.js"></script>
 
-<h1>Habitación 3 | Sala de Comando Espacial</h1>
-<p>Tiempo restante: <span id="contador">00:15:00</span></p>
 
-<img src="https://media.sketchfab.com/models/22c3ec5244aa4f52b7c7ef74061fe4ca/thumbnails/ef2d6862847c45e4b818db46402419b0/d3fc6d2629564205a8f3a802062c141d.jpeg" alt="">
+<section>
 
-<p>Pista Inicial: Mira a través de las pantallas y encontrarás las claves para desbloquear la siguiente habitación. Observa con atención cada detalle y busca patrones en las imágenes que se muestran</p>
+    <h1>Habitación 3 | Sala de Comando Espacial</h1>
 
-<p>Ingrese el código:</p>
+    <button class="anashex-buton">
+        <span id="contador">00:15:00</span>
+    </button>
 
-<form method="post" asp-action="Habitacion3">
-    <input type="hidden" name="sala" value="3" />
-    <input type="text" name="clave" />
-    <button type="submit">Validar</button>
-</form>
 
-@if (ViewBag.Error != null)
-{
-    <p class="error">@ViewBag.Error</p>
-}
+    <div class="bgg">
+        <img class="img-habitacion" src="https://media.sketchfab.com/models/22c3ec5244aa4f52b7c7ef74061fe4ca/thumbnails/ef2d6862847c45e4b818db46402419b0/d3fc6d2629564205a8f3a802062c141d.jpeg"
+            alt="">
+    </div>
 
-<button type="button" id="btnPistaExtra3">Pista Extra</button>
 
-<p>Vidas Restantes: @ViewBag.VidasRestantes</p>
+    <div class="textosss">
+        <p>Pista Inicial: Mira a través de las pantallas y encontrarás las claves para desbloquear la siguiente habitación.
+            Observa con atención cada detalle y busca patrones en las imágenes que se muestran</p>
+
+        <p>Ingrese el código:</p>
+    </div>
+
+    <form method="post" asp-action="Habitacion3">
+        <input type="hidden" name="sala" value="3" />
+        <input type="text" autocomplete="off" name="clave" class="input"/>
+        <button class="btnn" type="submit">Validar</button>
+    </form>
+
+    @if (ViewBag.Error != null)
+    {
+        <p class="error">@ViewBag.Error</p>
+    }
+
+    <button class="btnn" type="button" id="btnPistaExtra3">Pista Extra</button>
+
+    <button class="boton-vidas">
+        <svg class="empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
+            <path fill="none" d="M0 0H24V24H0z"></path>
+            <path
+                d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2zm-3.566 15.604c.881-.556 1.676-1.109 2.42-1.701C18.335 14.533 20 11.943 20 9c0-2.36-1.537-4-3.5-4-1.076 0-2.24.57-3.086 1.414L12 7.828l-1.414-1.414C9.74 5.57 8.576 5 7.5 5 5.56 5 4 6.656 4 9c0 2.944 1.666 5.533 4.645 7.903.745.592 1.54 1.145 2.421 1.7.299.189.595.37.934.572.339-.202.635-.383.934-.571z">
+            </path>
+        </svg>
+        <svg class="filled" height="32" width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H24V24H0z" fill="none"></path>
+            <path
+                d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z">
+            </path>
+        </svg>
+        <span>Vidas: @ViewBag.VidasRestantes</span>
+    </button>
+
+</section>
 
 <script>
-    var tiempoTotal = 900; 
-    var tiempoRestante = tiempoTotal; 
+    var tiempoTotal = 900;
+    var tiempoRestante = tiempoTotal;
     var intervalo;
 
     function iniciarContador() {
-    intervalo = setInterval(actualizarContador, 1000);
-  }
+        intervalo = setInterval(actualizarContador, 1000);
+    }
 
     function actualizarContador() {
-    tiempoRestante--;
-    var minutos = Math.floor(tiempoRestante / 60);
-    var segundos = tiempoRestante % 60;
+        tiempoRestante--;
+        var minutos = Math.floor(tiempoRestante / 60);
+        var segundos = tiempoRestante % 60;
 
-    var minutosFormateados = minutos.toString().padStart(2, "0");
-    var segundosFormateados = segundos.toString().padStart(2, "0");
+        var minutosFormateados = minutos.toString().padStart(2, "0");
+        var segundosFormateados = segundos.toString().padStart(2, "0");
 
-    document.getElementById("contador").textContent =
-      "00:" + minutosFormateados + ":" + segundosFormateados;
+        document.getElementById("contador").textContent =
+            "00:" + minutosFormateados + ":" + segundosFormateados;
 
-    if (tiempoRestante <= 0) {
-      clearInterval(intervalo);
-      window.location.href = '@Url.Action("Derrota","Home")';
+        if (tiempoRestante <= 0) {
+            clearInterval(intervalo);
+            window.location.href = '@Url.Action("Derrota","Home")';
+        }
     }
-  }
 
-  window.onload = function () {
-    iniciarContador();
-  };
+    window.onload = function () {
+        iniciarContador();
+    };
 
-  function actualizarTiempoRestante(tiempoPasado) {
-    tiempoRestante -= tiempoPasado;
-    clearInterval(intervalo);
-    intervalo = setInterval(actualizarContador, 1000);
-  }
+    function actualizarTiempoRestante(tiempoPasado) {
+        tiempoRestante -= tiempoPasado;
+        clearInterval(intervalo);
+        intervalo = setInterval(actualizarContador, 1000);
+    }
 
-    document.getElementById("btnPistaExtra3").addEventListener("click", function() {
+    document.getElementById("btnPistaExtra3").addEventListener("click", function () {
         var mensajePistaExtra = "Recuerden que la clave para desbloquear la siguiente habitación se encuentra oculta en los patrones de las imágenes en las pantallas. Presten atención a los colores, números o símbolos que puedan encontrar. Tal vez necesiten combinar información de diferentes pantallas para resolver el enigma";
         alert(mensajePistaExtra);
     });
@@ -73,5 +106,71 @@
 <style>
     body {
         background-color: black;
+        color: white;
+    }
+
+    section {
+        text-align: center;
+    }
+
+    .anashex-buton {
+        --glow-color: rgb(255, 255, 255);
+        --enhanced-glow-color: rgb(255, 255, 255);
+        --btn-color: rgb(0, 0, 0);
+        border: .20em solid var(--glow-color);
+        padding: 1em 3em;
+        color: var(--glow-color);
+
+        font-weight: bold;
+        background-color: var(--btn-color);
+        border-radius: 0.3em;
+        outline: none;
+        box-shadow: 0 0 1em .25em var(--glow-color),
+            0 0 4em 1em var(--glow-spread-color),
+            inset 0 0 .75em .25em var(--glow-color);
+        text-shadow: 0 0 .5em var(--glow-color);
+        position: relative;
+        transition: all 0.3s;
+        margin: 30px;
+    }
+
+
+    .anashex-buton::after {
+        pointer-events: none;
+        content: "";
+        position: absolute;
+        top: 120%;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: var(--glow-spread-color);
+        filter: blur(2em);
+        opacity: .7;
+        transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+    }
+
+    .anashex-buton:hover {
+        color: var(--btn-color);
+        background-color: var(--glow-color);
+        box-shadow: 0 0 1em .25em var(--glow-color),
+            0 0 4em 2em var(--glow-spread-color),
+            inset 0 0 .75em .25em var(--glow-color);
+    }
+
+    .anashex-buton:active {
+        box-shadow: 0 0 0.6em .25em var(--glow-color),
+            0 0 2.5em 2em var(--glow-spread-color),
+            inset 0 0 .5em .25em var(--glow-color);
+    }
+
+    .img-habitacion {
+        border: white 3px solid;
+    }
+
+    .textosss p {
+        margin: 20px;
+        font-size: 18px;
+        margin-left: 300px;
+        margin-right: 300px;
     }
 </style>

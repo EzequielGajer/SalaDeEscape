@@ -2,15 +2,97 @@
     ViewBag.Title = "Derrota";
 }
 
-<h1>Perdiste!</h1>
-<p>Has quedado sin vidas. Mejor suerte la próxima vez.</p>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/habitacion.css" asp-append-version="true" />
 
-<a href='@Url.Action("NuevoJuego", "Home")'>Volver a jugar</a>
+<p class="titulo-1">Perdiste, gastaste el limite vidas posibles</p>
+
+<p class="titulo-2">Presiona el botón de "Volver a jugar" para volver a intentarlo</p>
+
+<div class="arrow">
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<button class="buttttton">
+    <a href='@Url.Action("NuevoJuego", "Home")'>Volver a jugar</a>
+</button>
 
 <script defer src="https://app.embed.im/snow.js"></script>
 
 <style>
+    .titulo-1 {
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-align: center;
+        font-size: 60px;
+        letter-spacing: 0.5px;
+        word-spacing: 8px;
+    }
+
+    .titulo-2 {
+        text-align: center;
+        margin-top: 20px;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+        font-size: 30px;
+    }
+
     body {
-        background-color: black;
+        background-color: rgb(0, 0, 0);
+        color: white;
+    }
+
+    .buttttton {
+        cursor: pointer;
+        position: relative;
+        padding: 10px 24px;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        border: 2px solid rgb(255, 255, 255);
+        border-radius: 34px;
+        background-color: transparent;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        overflow: hidden;
+        margin-left: 555px;
+        transition: 0.45s;
+    }
+
+    .buttttton a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .buttttton::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 50px;
+        height: 50px;
+        border-radius: inherit;
+        scale: 0;
+        z-index: -1;
+        background-color: #000000;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+
+    .buttttton:hover::before {
+        scale: 3;
+
+    }
+
+    .buttttton:hover {
+        color: #212121;
+        scale: 1.1;
+        box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
+    }
+
+    .buttttton:hover {
+        color: black;
+    }
+
+    .buttttton:active {
+        scale: 1;
     }
 </style>

@@ -151,7 +151,7 @@ public class HomeController : Controller
         int estadoJuego = Escape.GetEstadoJuego();
         int vidasRestantes = Escape.GetVidasRestantes();
 
-        if (sala != 4 || clave != "EITAN")
+        if (sala != 4 || clave != "EUROPA")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
             Escape.DecrementarVida();

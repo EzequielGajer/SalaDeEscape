@@ -2,71 +2,106 @@
     ViewBag.Title = "Habitación 1";
 }
 
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/habitacion.css" asp-append-version="true" />
+
 <script defer src="https://app.embed.im/snow.js"></script>
 
-<h1>Habitación 1</h1>
-<p>Tiempo restante: <span id="contador">00:15:00</span></p>
+<section>
 
-<img src="https://image.cnbcfm.com/api/v1/image/106636040-1595951417438-Virgin_Galactic_Spaceship_Cabin_Interior_In_Space.jpg?v=1595951489&w=740&h=416&ffmt=webp&vtcrop=y" alt="">
+    <h1>Habitación 1 | El viaje estelar</h1>
+    <button class="anashex-buton">
+        <span id="contador">00:15:00</span>
+    </button>
 
-<p>Pista inicial: "Mira a través de las ventanillas y podrás ver el infinito vaco; sin embargo, nuestro destino está allá afuera. Observa bien y encontrarás la respuesta hacia el siguiente lugar."</p>
 
-<p>Ingrese el código:</p>
+    <div class="bgg">
+        <img class="img-habitacion"
+            src="https://image.cnbcfm.com/api/v1/image/106636040-1595951417438-Virgin_Galactic_Spaceship_Cabin_Interior_In_Space.jpg?v=1595951489&w=740&h=416&ffmt=webp&vtcrop=y"
+            alt="">
+    </div>
 
-<form method="post" asp-action="Habitacion1">
-    <input type="hidden" name="sala" value="1" />
-    <input type="text" name="clave" />
-    <button type="submit">Validar</button>
-</form>
+    <div class="textosss">
+        <p>Pista inicial: "Mira a través de las ventanillas y podrás ver el infinito vacio sin embargo, nuestro destino
+            está
+            allá afuera. Observa bien y encontrarás la respuesta hacia el siguiente lugar."</p>
 
-@if (ViewBag.Error != null)
-{
-    <p class="error">@ViewBag.Error</p>
-}
+        <p>Ingrese el código:</p>
+    </div>
 
-<button type="button" id="btnPistaExtra">Pista Extra</button>
+    <form method="post" asp-action="Habitacion1">
+        <input type="hidden" name="sala" value="1" />
+        <input type="text" autocomplete="off" name="clave" class="input">
+        <button class="btnn" type="submit">Validar</button>
+    </form>
 
-<p>Vidas Restantes: @ViewBag.VidasRestantes</p>
+    @if (ViewBag.Error != null)
+    {
+        <p class="error">@ViewBag.Error</p>
+    }
+
+    <button class="btnn" type="button" id="btnPistaExtra">Pista Extra</button>
+
+
+    <button class="boton-vidas">
+        <svg class="empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
+            <path fill="none" d="M0 0H24V24H0z"></path>
+            <path
+                d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2zm-3.566 15.604c.881-.556 1.676-1.109 2.42-1.701C18.335 14.533 20 11.943 20 9c0-2.36-1.537-4-3.5-4-1.076 0-2.24.57-3.086 1.414L12 7.828l-1.414-1.414C9.74 5.57 8.576 5 7.5 5 5.56 5 4 6.656 4 9c0 2.944 1.666 5.533 4.645 7.903.745.592 1.54 1.145 2.421 1.7.299.189.595.37.934.572.339-.202.635-.383.934-.571z">
+            </path>
+        </svg>
+        <svg class="filled" height="32" width="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 0H24V24H0z" fill="none"></path>
+            <path
+                d="M16.5 3C19.538 3 22 5.5 22 9c0 7-7.5 11-10 12.5C9.5 20 2 16 2 9c0-3.5 2.5-6 5.5-6C9.36 3 11 4 12 5c1-1 2.64-2 4.5-2z">
+            </path>
+        </svg>
+        <span>Vidas: @ViewBag.VidasRestantes</span>
+    </button>
+
+    
+
+</section>
 
 <script>
-    
-  var tiempoTotal = 900; 
-  var tiempoRestante = tiempoTotal; 
-  var intervalo;
 
-  function iniciarContador() {
-    intervalo = setInterval(actualizarContador, 1000);
-  }
+    var tiempoTotal = 900;
+    var tiempoRestante = tiempoTotal;
+    var intervalo;
 
-  function actualizarContador() {
-    tiempoRestante--;
-    var minutos = Math.floor(tiempoRestante / 60);
-    var segundos = tiempoRestante % 60;
-
-    var minutosFormateados = minutos.toString().padStart(2, "0");
-    var segundosFormateados = segundos.toString().padStart(2, "0");
-
-    document.getElementById("contador").textContent =
-      "00:" + minutosFormateados + ":" + segundosFormateados;
-
-    if (tiempoRestante <= 0) {
-      clearInterval(intervalo);
-      window.location.href = '@Url.Action("Derrota","Home")';
+    function iniciarContador() {
+        intervalo = setInterval(actualizarContador, 1000);
     }
-  }
 
-  window.onload = function () {
-    iniciarContador();
-  };
+    function actualizarContador() {
+        tiempoRestante--;
+        var minutos = Math.floor(tiempoRestante / 60);
+        var segundos = tiempoRestante % 60;
 
-  function actualizarTiempoRestante(tiempoPasado) {
-    tiempoRestante -= tiempoPasado;
-    clearInterval(intervalo);
-    intervalo = setInterval(actualizarContador, 1000);
-  }
+        var minutosFormateados = minutos.toString().padStart(2, "0");
+        var segundosFormateados = segundos.toString().padStart(2, "0");
 
-    document.getElementById("btnPistaExtra").addEventListener("click", function() {
-        var mensajePistaExtra = "Pista extra: Los astronautas necesitan un traje especial para sobrevivir en el __." ;
+        document.getElementById("contador").textContent =
+            "00:" + minutosFormateados + ":" + segundosFormateados;
+
+        if (tiempoRestante <= 0) {
+            clearInterval(intervalo);
+            window.location.href = '@Url.Action("Derrota","Home")';
+        }
+    }
+
+    window.onload = function () {
+        iniciarContador();
+    };
+
+    function actualizarTiempoRestante(tiempoPasado) {
+        tiempoRestante -= tiempoPasado;
+        clearInterval(intervalo);
+        intervalo = setInterval(actualizarContador, 1000);
+    }
+
+    document.getElementById("btnPistaExtra").addEventListener("click", function () {
+        var mensajePistaExtra = "Pista extra: Los astronautas necesitan un traje especial para sobrevivir en el __.";
         alert(mensajePistaExtra);
     });
 </script>
@@ -74,5 +109,71 @@
 <style>
     body {
         background-color: black;
+        color: white;
+    }
+
+    section {
+        text-align: center;
+    }
+
+    .anashex-buton {
+        --glow-color: rgb(255, 255, 255);
+        --enhanced-glow-color: rgb(255, 255, 255);
+        --btn-color: rgb(0, 0, 0);
+        border: .20em solid var(--glow-color);
+        padding: 1em 3em;
+        color: var(--glow-color);
+
+        font-weight: bold;
+        background-color: var(--btn-color);
+        border-radius: 0.3em;
+        outline: none;
+        box-shadow: 0 0 1em .25em var(--glow-color),
+            0 0 4em 1em var(--glow-spread-color),
+            inset 0 0 .75em .25em var(--glow-color);
+        text-shadow: 0 0 .5em var(--glow-color);
+        position: relative;
+        transition: all 0.3s;
+        margin: 30px;
+    }
+
+
+    .anashex-buton::after {
+        pointer-events: none;
+        content: "";
+        position: absolute;
+        top: 120%;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: var(--glow-spread-color);
+        filter: blur(2em);
+        opacity: .7;
+        transform: perspective(1.5em) rotateX(35deg) scale(1, .6);
+    }
+
+    .anashex-buton:hover {
+        color: var(--btn-color);
+        background-color: var(--glow-color);
+        box-shadow: 0 0 1em .25em var(--glow-color),
+            0 0 4em 2em var(--glow-spread-color),
+            inset 0 0 .75em .25em var(--glow-color);
+    }
+
+    .anashex-buton:active {
+        box-shadow: 0 0 0.6em .25em var(--glow-color),
+            0 0 2.5em 2em var(--glow-spread-color),
+            inset 0 0 .5em .25em var(--glow-color);
+    }
+
+    .img-habitacion {
+        border: white 3px solid;
+    }
+
+    .textosss p {
+        margin: 20px;
+        font-size: 18px;
+        margin-left: 300px;
+        margin-right: 300px;
     }
 </style>

@@ -1,7 +1,7 @@
 public static class Escape
 {
 
-    private static string[] incognitasSalas = new string[] { "ESPACIO", "LUNA", "AZUL", "Incognita Sala 4" };
+    private static string[] incognitasSalas = new string[] { "ESPACIO", "LUNA", "AZUL", "EUROPA" };
 
     private static int estadoJuego = 1;
 
@@ -9,7 +9,7 @@ public static class Escape
 
     private static void InicializarJuego()
     {
-        incognitasSalas = new string[] { "ESPACIO", "LUNA", "AZUL", "Incognita Sala 4" };
+        incognitasSalas = new string[] { "ESPACIO", "LUNA", "AZUL", "EUROPA" };
 
     }
 
@@ -72,7 +72,7 @@ public static class Escape
                 break;
 
             case 4:
-                if (Incognita == "EITAN")
+                if (Incognita == "EUROPA")
                 {
                     estadoJuego = estadoJuego + 1;
                     return true;

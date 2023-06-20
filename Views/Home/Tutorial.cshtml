@@ -7,6 +7,8 @@
 
 <script defer src="https://app.embed.im/snow.js"></script>
 
+<section>
+
 <h1>Historia</h1>
 
 <p class="text-historia">Nos encontramos en el año 2550 en la nave espacial “Orbe Galáctico”. La tripulación de la nave
@@ -48,21 +50,27 @@
     </ul>
 </div>
 
-<button class="btn" type="button">
-  <strong>PERSONAJES</strong>
-  <div id="container-stars">
-    <div id="stars"></div>
-  </div>
+<button class="btn" type="button" onclick="window.location.href = '@Url.Action("Personajes","Home")';">
+    <strong>PERSONAJES</strong>
+    <div id="container-stars">
+        <div id="stars"></div>
+    </div>
 
-  <div id="glow">
-    <div class="circle"></div>
-    <div class="circle"></div>
-  </div>
-</button>
+    <div id="glow">
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+</button
+
+</section>
+
 <style>
     body {
         background-color: black;
         color: white;
+    }
+
+    section {
         text-align: center;
     }
 
