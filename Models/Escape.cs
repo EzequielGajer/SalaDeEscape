@@ -7,6 +7,10 @@ public static class Escape
 
     private static int vidasRestantes = 5;
 
+    private static int intentosExtraUtilizados = 0;
+    private static int pistasExtrasUtilizadas = 0;
+
+
     private static void InicializarJuego()
     {
         incognitasSalas = new string[] { "ESPACIO", "LUNA", "AZUL", "EUROPA" };
@@ -31,6 +35,32 @@ public static class Escape
     public static void ResetearVidas()
     {
         vidasRestantes = 4;
+    }
+
+    public static void IncrementarIntentosExtra()
+    {
+        intentosExtraUtilizados = intentosExtraUtilizados + 1;
+    }
+
+    public static void IncrementarPistasExtra()
+    {
+        pistasExtrasUtilizadas = pistasExtrasUtilizadas + 1;
+    }
+
+    public static int GetIntentosExtraUtilizados()
+    {
+        return intentosExtraUtilizados;
+    }
+
+    public static int GetPistasExtrasUtilizadas()
+    {
+        return pistasExtrasUtilizadas;
+    }
+
+    public static void ResetearPistasYIntentosExtra()
+    {
+        pistasExtrasUtilizadas = 0;
+        intentosExtraUtilizados = 0;
     }
 
     public static bool ResolverSala(int Sala, string Incognita)

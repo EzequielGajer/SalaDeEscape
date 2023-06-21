@@ -53,7 +53,10 @@ public class HomeController : Controller
         if (sala != 1 || clave != "ESPACIO")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
+            Escape.IncrementarIntentosExtra();
+            Escape.IncrementarPistasExtra();
             Escape.DecrementarVida();
+
             int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
 
             if (vidasRestantesDespuesDeRestar == 0)
@@ -62,6 +65,8 @@ public class HomeController : Controller
             }
 
             ViewBag.VidasRestantes = vidasRestantesDespuesDeRestar;
+            ViewBag.PistasExtrasUtilizadas = Escape.GetPistasExtrasUtilizadas();
+            ViewBag.IntentosExtraUtilizados = Escape.GetIntentosExtraUtilizados();
 
             return View("Habitacion1");
 
@@ -76,6 +81,8 @@ public class HomeController : Controller
         }
 
         ViewBag.VidasRestantes = vidasRestantesDespuesDeResolver;
+        ViewBag.PistasExtrasUtilizadas = Escape.GetPistasExtrasUtilizadas();
+        ViewBag.IntentosExtraUtilizados = Escape.GetIntentosExtraUtilizados();
 
         return View("Habitacion2");
     }
@@ -88,7 +95,10 @@ public class HomeController : Controller
         if (sala != 2 || clave != "LUNA")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
+            Escape.IncrementarIntentosExtra();
+            Escape.IncrementarPistasExtra();
             Escape.DecrementarVida();
+
             int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
 
             if (vidasRestantesDespuesDeRestar == 0)
@@ -97,6 +107,9 @@ public class HomeController : Controller
             }
 
             ViewBag.VidasRestantes = vidasRestantesDespuesDeRestar;
+            ViewBag.PistasExtrasUtilizadas = Escape.GetPistasExtrasUtilizadas();
+            ViewBag.IntentosExtraUtilizados = Escape.GetIntentosExtraUtilizados();
+
             return View("Habitacion2");
         }
 
@@ -109,6 +122,8 @@ public class HomeController : Controller
         }
 
         ViewBag.VidasRestantes = vidasRestantesDespuesDeResolver;
+        ViewBag.PistasExtrasUtilizadas = Escape.GetPistasExtrasUtilizadas();
+        ViewBag.IntentosExtraUtilizados = Escape.GetIntentosExtraUtilizados();
 
         return View("Habitacion3");
     }
@@ -121,6 +136,8 @@ public class HomeController : Controller
         if (sala != 3 || clave != "AZUL")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
+            Escape.IncrementarIntentosExtra();
+            Escape.IncrementarPistasExtra();
             Escape.DecrementarVida();
             int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
 
@@ -130,6 +147,9 @@ public class HomeController : Controller
             }
 
             ViewBag.VidasRestantes = vidasRestantesDespuesDeRestar;
+            ViewBag.PistasExtrasUtilizadas = Escape.GetPistasExtrasUtilizadas();
+            ViewBag.IntentosExtraUtilizados = Escape.GetIntentosExtraUtilizados();
+
             return View("Habitacion3");
         }
 
@@ -142,6 +162,8 @@ public class HomeController : Controller
         }
 
         ViewBag.VidasRestantes = vidasRestantesDespuesDeResolver;
+        ViewBag.PistasExtrasUtilizadas = Escape.GetPistasExtrasUtilizadas();
+        ViewBag.IntentosExtraUtilizados = Escape.GetIntentosExtraUtilizados();
 
         return View("Habitacion4");
     }
@@ -154,7 +176,10 @@ public class HomeController : Controller
         if (sala != 4 || clave != "EUROPA")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
+            Escape.IncrementarIntentosExtra();
+            Escape.IncrementarPistasExtra();
             Escape.DecrementarVida();
+
             int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
 
             if (vidasRestantesDespuesDeRestar == 0)
@@ -163,6 +188,9 @@ public class HomeController : Controller
             }
 
             ViewBag.VidasRestantes = vidasRestantesDespuesDeRestar;
+            ViewBag.PistasExtrasUtilizadas = Escape.GetPistasExtrasUtilizadas();
+            ViewBag.IntentosExtraUtilizados = Escape.GetIntentosExtraUtilizados();
+
             return View("Habitacion4");
         }
 
@@ -175,6 +203,9 @@ public class HomeController : Controller
         }
 
         ViewBag.VidasRestantes = vidasRestantesDespuesDeResolver;
+        ViewBag.PistasExtrasUtilizadas = Escape.GetPistasExtrasUtilizadas();
+        ViewBag.IntentosExtraUtilizados = Escape.GetIntentosExtraUtilizados();
+
         return View("Victoria");
     }
 
@@ -184,6 +215,12 @@ public class HomeController : Controller
 
         if (estadoJuego == 5)
         {
+            int intentosExtraUtilizados = Escape.GetIntentosExtraUtilizados();
+            int pistasExtrasUtilizadas = Escape.GetPistasExtrasUtilizadas();
+
+            ViewBag.IntentosExtraUtilizados = intentosExtraUtilizados;
+            ViewBag.PistasExtrasUtilizadas = pistasExtrasUtilizadas;
+
             return View();
         }
 
@@ -198,7 +235,8 @@ public class HomeController : Controller
     public IActionResult NuevoJuego()
     {
         Escape.ResetearVidas();
-
+        
+        Escape.ResetearPistasYIntentosExtra();
         int vidasRestantes = Escape.GetVidasRestantes();
         ViewBag.VidasRestantes = vidasRestantes;
 

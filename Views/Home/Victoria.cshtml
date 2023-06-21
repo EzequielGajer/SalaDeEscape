@@ -1,13 +1,136 @@
 ﻿@{
-   ViewBag.Title = "Victoria"; 
+   ViewBag.Title = "Victoria";
+   int pistasExtrasUtilizadas = Convert.ToInt32(ViewBag.PistasExtrasUtilizadas);
+   int intentosExtraUtilizados = Convert.ToInt32(ViewBag.IntentosExtraUtilizados);
+   intentosExtraUtilizados--;
+   pistasExtrasUtilizadas--;
 }
 
-<h1>Has Conseguido Escapar! Felicitaciones!</h1>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/habitacion.css" asp-append-version="true" />
+
+<h1>Lograste escapar! Felicitaciones!</h1>
+<p>Sos un maestro del ingenio y la resolución de enigmas. ¡Excelente trabajo!</p>
+
+<div class="loader"></div>
+
+<p>Pistas extras utilizadas: @pistasExtrasUtilizadas</p>
+<p>Intentos extra utilizados: @intentosExtraUtilizados</p>
+<p>Vidas perdidas: @intentosExtraUtilizados</p>
+
+<div class="loader"></div>
+
+<div class="arrows">
+   <div class="arrow-1">
+      <h2>Volver a jugar</h2>
+      <div class="arroww">
+         <span></span>
+         <span></span>
+         <span></span>
+      </div>
+
+      <button class="buttttton">
+         <a href='@Url.Action("NuevoJuego", "Home")'>Volver a jugar</a>
+      </button>
+   </div>
+
+
+   <div class="arrow-1">
+      <h2>Ir al inicio</h2>
+      <div class="arroww">
+         <span></span>
+         <span></span>
+         <span></span>
+      </div>
+
+      <button class="buttttton">
+         <a href='@Url.Action("Index", "Home")'>Volver al inicio</a>
+      </button>
+
+   </div>
+</div>
+
+<div class="loader"></div>
 
 <script defer src="https://app.embed.im/snow.js"></script>
 
 <style>
-    body {
-        background-color: black;
+   body {
+      background-color: black;
+   }
+
+   h1 {
+      font-size: 40px;
+      color: white;
+      animation: confetti 4s ease infinite;
+      text-align: center;
+      margin-top: 100px;
+      margin-bottom: 30px;
+   }
+
+   p {
+      font-size: 20px;
+      color: white;
+      text-align: center;
+   }
+
+   h2 {
+      color: white;
+      margin-left: 250px;
+   }
+
+   .buttttton {
+        cursor: pointer;
+        position: relative;
+        padding: 10px 24px;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        border: 2px solid rgb(255, 255, 255);
+        border-radius: 34px;
+        background-color: transparent;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        overflow: hidden;
+        margin-left: 245px;
+        transition: 0.45s;
+        margin-bottom: 100px;
+    }
+
+    .buttttton a {
+        text-decoration: none;
+        color: white;
+    }
+
+    .buttttton::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        margin: auto;
+        width: 50px;
+        height: 50px;
+        border-radius: inherit;
+        scale: 0;
+        z-index: -1;
+        background-color: #000000;
+        transition: all 0.6s cubic-bezier(0.23, 1, 0.320, 1);
+    }
+
+    .buttttton:hover::before {
+        scale: 3;
+
+    }
+
+    .buttttton:hover {
+        color: #212121;
+        scale: 1.1;
+        box-shadow: 0 0px 20px rgba(193, 163, 98, 0.4);
+    }
+
+    .buttttton:hover {
+        color: black;
+    }
+
+    .buttttton:active {
+        scale: 1;
     }
 </style>

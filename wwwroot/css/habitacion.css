@@ -190,13 +190,72 @@ span {
     border-radius: 15px;
     padding: 1em;
     background-color: #ffffff;
-    box-shadow: inset 2px 5px 10px rgba(0,0,0,0.3);
+    box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.3);
     transition: 300ms ease-in-out;
     margin: 15px;
-  }
-  
-  .input:focus {
+}
+
+.input:focus {
     background-color: white;
     transform: scale(1.05);
-    
+
+}
+
+
+
+.loader {
+    width: 1400px;
+    height: 15px;
+    background: repeating-linear-gradient(-45deg, #ffffff 0 30px,#0000 0 40px) left/200% 100%;
+    animation: i3 5s infinite linear;
+    border-radius: 10px;
+    border: 1px solid #000000;
+    margin-top: 80px;
+    margin-right: 100px;
+    margin-bottom: 80px;
   }
+  
+  @keyframes i3 {
+    100% {
+      background-position: right
+    }
+  }
+    
+  .arrows {
+    text-align: center;
+    display: inline-block;
+  }
+
+  .arrow-1 {
+    display: inline-block;
+    margin-left: -70px;
+  }
+
+
+  .arroww {
+    transform: rotate(360deg);
+    cursor: pointer;
+    margin: 150px;
+    margin-top: 70px;
+    margin-bottom: 120px;
+    margin-left: 400px;
+}
+
+.arroww span {
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-bottom: 5px solid rgb(255, 255, 255);
+    border-right: 5px solid rgb(255, 255, 255);
+    transform: rotate(45deg);
+    margin: 5px;
+    animation: animate28797 2s infinite;
+}
+
+.arroww span:nth-child(2) {
+    animation-delay: -0.2s;
+}
+
+.arroww span:nth-child(3) {
+    animation-delay: -0.4s;
+}
