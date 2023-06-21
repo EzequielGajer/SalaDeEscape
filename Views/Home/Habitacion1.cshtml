@@ -42,7 +42,6 @@
 
     <button class="btnn" type="button" id="btnPistaExtra">Pista Extra</button>
 
-
     <button class="boton-vidas">
         <svg class="empty" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32">
             <path fill="none" d="M0 0H24V24H0z"></path>
@@ -100,10 +99,47 @@
         intervalo = setInterval(actualizarContador, 1000);
     }
 
-    document.getElementById("btnPistaExtra").addEventListener("click", function () {
-        var mensajePistaExtra = "Pista extra: Los astronautas necesitan un traje especial para sobrevivir en el __.";
-        alert(mensajePistaExtra);
+        var pistasExtra = 0;
+
+        document.getElementById("btnPistaExtra").addEventListener("click", function () {
+        IncrementarpistasExtra();
+        var mensajePistaExtra = "Pista extra: Los astronautas necesitan un traje especial para sobrevivir en el __";
+        var alertContainer = document.createElement("div");
+        alertContainer.classList.add("alert-container");
+
+        var message = document.createElement("div");
+        message.classList.add("message");
+        message.textContent = mensajePistaExtra;
+
+        var closeButton = document.createElement("span");
+        closeButton.classList.add("close-btn");
+        closeButton.innerHTML = "&times;";
+        closeButton.addEventListener("click", function () {
+            alertContainer.classList.remove("show");
+            setTimeout(function () {
+            alertContainer.remove();
+            }, 300);
+        });
+
+        alertContainer.appendChild(closeButton);
+        alertContainer.appendChild(message);
+        document.body.appendChild(alertContainer);
+
+        setTimeout(function () {
+            alertContainer.classList.add("show");
+    }, 100);
+
+        function IncrementarpistasExtra()
+        {
+            pistasExtra = pistasExtra + 1;
+            console.log("Se ha utilizado una pista extra. Total: " + pistasExtra);
+        }
+
+        var resultadoPistasExtra = "Pistas extra utilizadas: " + pistasExtra;
+        document.getElementById("pistasExtra-utilizadas").textContent = resultadoPistasExtra;
+
     });
+
 </script>
 
 <style>
@@ -111,7 +147,6 @@
         background-color: black;
         color: white;
     }
-
     section {
         text-align: center;
     }
@@ -176,4 +211,6 @@
         margin-left: 300px;
         margin-right: 300px;
     }
+
+
 </style>

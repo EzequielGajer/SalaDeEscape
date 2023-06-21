@@ -60,7 +60,7 @@ public static class Escape
     public static void ResetearPistasYIntentosExtra()
     {
         pistasExtrasUtilizadas = 0;
-        intentosExtraUtilizados = 0;
+        intentosExtraUtilizados = 0 + 1;
     }
 
     public static bool ResolverSala(int Sala, string Incognita)
@@ -78,7 +78,7 @@ public static class Escape
         switch (Sala)
         {
             case 1:
-                if (Incognita == "ESPACIO")
+                if (Incognita.ToLower() == "espacio")
                 {
                     estadoJuego = estadoJuego + 1;
                     return true;
@@ -86,7 +86,7 @@ public static class Escape
                 break;
 
             case 2:
-                if (Incognita == "LUNA")
+                if (Incognita.ToLower() == "luna")
                 {
                     estadoJuego = estadoJuego + 1;
                     return true;
@@ -94,7 +94,7 @@ public static class Escape
                 break;
 
             case 3:
-                if (Incognita == "AZUL")
+                if (Incognita.ToLower() == "azul")
                 {
                     estadoJuego = estadoJuego + 1;
                     return true;
@@ -102,7 +102,7 @@ public static class Escape
                 break;
 
             case 4:
-                if (Incognita == "EUROPA")
+                if (Incognita.ToLower() == "europa")
                 {
                     estadoJuego = estadoJuego + 1;
                     return true;

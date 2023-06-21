@@ -61,44 +61,67 @@
 
     <script>
         var tiempoTotal = 900;
-        var tiempoRestante = tiempoTotal;
-        var intervalo;
+    var tiempoRestante = tiempoTotal;
+    var intervalo;
 
-        function iniciarContador() {
-            intervalo = setInterval(actualizarContador, 1000);
-        }
+    function iniciarContador() {
+        intervalo = setInterval(actualizarContador, 1000);
+    }
 
-        function actualizarContador() {
-            tiempoRestante--;
-            var minutos = Math.floor(tiempoRestante / 60);
-            var segundos = tiempoRestante % 60;
+    function actualizarContador() {
+        tiempoRestante--;
+        var minutos = Math.floor(tiempoRestante / 60);
+        var segundos = tiempoRestante % 60;
 
-            var minutosFormateados = minutos.toString().padStart(2, "0");
-            var segundosFormateados = segundos.toString().padStart(2, "0");
+        var minutosFormateados = minutos.toString().padStart(2, "0");
+        var segundosFormateados = segundos.toString().padStart(2, "0");
 
-            document.getElementById("contador").textContent =
-                "00:" + minutosFormateados + ":" + segundosFormateados;
+        document.getElementById("contador").textContent =
+            "00:" + minutosFormateados + ":" + segundosFormateados;
 
-            if (tiempoRestante <= 0) {
-                clearInterval(intervalo);
-                window.location.href = '@Url.Action("Derrota","Home")';
-            }
-        }
-
-        window.onload = function () {
-            iniciarContador();
-        };
-
-        function actualizarTiempoRestante(tiempoPasado) {
-            tiempoRestante -= tiempoPasado;
+        if (tiempoRestante <= 0) {
             clearInterval(intervalo);
-            intervalo = setInterval(actualizarContador, 1000);
+            window.location.href = '@Url.Action("Derrota","Home")';
         }
+    }
+
+    window.onload = function () {
+        iniciarContador();
+    };
+
+    function actualizarTiempoRestante(tiempoPasado) {
+        tiempoRestante -= tiempoPasado;
+        clearInterval(intervalo);
+        intervalo = setInterval(actualizarContador, 1000);
+    }
 
         document.getElementById("btnPistaExtra4").addEventListener("click", function () {
-            var mensajePistaExtra = "Pista extra: Este continente alberga una variedad de lenguajes, culturas y paisajes. Desde las majestuosas montañas de los Alpes hasta su rica historia, arquitectura impresionante y deliciosa gastronomía";
-            alert(mensajePistaExtra);
+        var mensajePistaExtra = "Pista extra: Este continente alberga una variedad de lenguajes, culturas y paisajes. Desde las majestuosas montañas de los Alpes hasta su rica historia, arquitectura impresionante y deliciosa gastronomía";
+        var alertContainer = document.createElement("div");
+        alertContainer.classList.add("alert-container");
+
+        var message = document.createElement("div");
+        message.classList.add("message");
+        message.textContent = mensajePistaExtra;
+
+        var closeButton = document.createElement("span");
+        closeButton.classList.add("close-btn");
+        closeButton.innerHTML = "&times;";
+        closeButton.addEventListener("click", function () {
+            alertContainer.classList.remove("show");
+            setTimeout(function () {
+            alertContainer.remove();
+            }, 300);
         });
+
+        alertContainer.appendChild(closeButton);
+        alertContainer.appendChild(message);
+        document.body.appendChild(alertContainer);
+
+        setTimeout(function () {
+            alertContainer.classList.add("show");
+    }, 100);
+    });
     </script>
 
     <style>

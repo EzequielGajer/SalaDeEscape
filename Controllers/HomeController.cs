@@ -50,11 +50,10 @@ public class HomeController : Controller
         int estadoJuego = Escape.GetEstadoJuego();
         int vidasRestantes = Escape.GetVidasRestantes();
 
-        if (sala != 1 || clave != "ESPACIO")
+        if (sala != 1 || clave.ToLower() != "espacio")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
             Escape.IncrementarIntentosExtra();
-            Escape.IncrementarPistasExtra();
             Escape.DecrementarVida();
 
             int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
@@ -92,11 +91,10 @@ public class HomeController : Controller
         int estadoJuego = Escape.GetEstadoJuego();
         int vidasRestantes = Escape.GetVidasRestantes();
 
-        if (sala != 2 || clave != "LUNA")
+        if (sala != 2 || clave.ToLower() != "luna")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
             Escape.IncrementarIntentosExtra();
-            Escape.IncrementarPistasExtra();
             Escape.DecrementarVida();
 
             int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
@@ -133,11 +131,10 @@ public class HomeController : Controller
         int estadoJuego = Escape.GetEstadoJuego();
         int vidasRestantes = Escape.GetVidasRestantes();
 
-        if (sala != 3 || clave != "AZUL")
+        if (sala != 3 || clave.ToLower() != "azul")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
             Escape.IncrementarIntentosExtra();
-            Escape.IncrementarPistasExtra();
             Escape.DecrementarVida();
             int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();
 
@@ -173,11 +170,10 @@ public class HomeController : Controller
         int estadoJuego = Escape.GetEstadoJuego();
         int vidasRestantes = Escape.GetVidasRestantes();
 
-        if (sala != 4 || clave != "EUROPA")
+        if (sala != 4 || clave.ToLower() != "europa")
         {
             ViewBag.Error = "La respuesta escrita fue incorrecta.";
             Escape.IncrementarIntentosExtra();
-            Escape.IncrementarPistasExtra();
             Escape.DecrementarVida();
 
             int vidasRestantesDespuesDeRestar = Escape.GetVidasRestantes();

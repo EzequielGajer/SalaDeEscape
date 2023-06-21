@@ -1,9 +1,7 @@
 ﻿@{
    ViewBag.Title = "Victoria";
-   int pistasExtrasUtilizadas = Convert.ToInt32(ViewBag.PistasExtrasUtilizadas);
    int intentosExtraUtilizados = Convert.ToInt32(ViewBag.IntentosExtraUtilizados);
    intentosExtraUtilizados--;
-   pistasExtrasUtilizadas--;
 }
 
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -14,9 +12,7 @@
 
 <div class="loader"></div>
 
-<p>Pistas extras utilizadas: @pistasExtrasUtilizadas</p>
 <p>Intentos extra utilizados: @intentosExtraUtilizados</p>
-<p>Vidas perdidas: @intentosExtraUtilizados</p>
 
 <div class="loader"></div>
 

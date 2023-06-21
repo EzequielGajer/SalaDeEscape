@@ -259,3 +259,56 @@ span {
 .arroww span:nth-child(3) {
     animation-delay: -0.4s;
 }
+
+.alert-container {
+    position: fixed;
+    top: 45%;
+    left: 1%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: 2px white solid;
+    width: 500px;
+    margin-left: 70px;
+    margin-top: 100px;
+  }
+  
+  .alert-container.show {
+    opacity: 1;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .alert-container.show {
+    animation: pulse 1s infinite;
+  }
+  
+  .message {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .close-btn {
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .close-btn:hover {
+    color: lightgray;
+  }
