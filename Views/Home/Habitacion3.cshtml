@@ -13,7 +13,7 @@
     <h1>Habitación 3 | Sala de Comando Espacial</h1>
 
     <button class="anashex-buton">
-        <span id="contador">00:15:00</span>
+        <span id="contador">00:02:30</span>
     </button>
 
 
@@ -32,7 +32,7 @@
 
     <form method="post" asp-action="Habitacion3">
         <input type="hidden" name="sala" value="3" />
-        <input type="text" autocomplete="off" name="clave" class="input"/>
+        <input type="text" required autocomplete="off" name="clave" class="input"/>
         <button class="btnn" type="submit">Validar</button>
     </form>
 
@@ -62,7 +62,7 @@
 </section>
 
 <script>
-    var tiempoTotal = 900;
+    var tiempoTotal = 150;
     var tiempoRestante = tiempoTotal;
     var intervalo;
 

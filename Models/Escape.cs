@@ -74,40 +74,11 @@ public static class Escape
         {
             InicializarJuego();
         }
-
-        switch (Sala)
+        
+        if (Incognita.ToLower() == incognitasSalas[Sala-1])
         {
-            case 1:
-                if (Incognita.ToLower() == "espacio")
-                {
-                    estadoJuego = estadoJuego + 1;
-                    return true;
-                }
-                break;
-
-            case 2:
-                if (Incognita.ToLower() == "luna")
-                {
-                    estadoJuego = estadoJuego + 1;
-                    return true;
-                }
-                break;
-
-            case 3:
-                if (Incognita.ToLower() == "azul")
-                {
-                    estadoJuego = estadoJuego + 1;
-                    return true;
-                }
-                break;
-
-            case 4:
-                if (Incognita.ToLower() == "europa")
-                {
-                    estadoJuego = estadoJuego + 1;
-                    return true;
-                }
-                break;
+            estadoJuego = estadoJuego + 1;
+            return true;
         }
 
         vidasRestantes = vidasRestantes - 1;
